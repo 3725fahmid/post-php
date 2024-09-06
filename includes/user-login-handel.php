@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     $userId = getUserId($userEmail, $conn);
+    createUserLog($userId, $conn);
 
     $_SESSION['user'] = $userId;
     header("Location: ../index.php");

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 04, 2024 at 08:54 AM
+-- Generation Time: Sep 06, 2024 at 04:31 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.9
 
@@ -41,6 +41,77 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`admin_id`, `admin_name`, `admin_email`, `admin_pass`, `created_at`) VALUES
 (1, 'Admin', 'admin@admin.com', 'QJIsuUAAI/bO+86OVjYqWQ==', '2024-06-06 09:50:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `file_downloads`
+--
+
+CREATE TABLE `file_downloads` (
+  `id` int NOT NULL,
+  `file_id` int NOT NULL,
+  `download_count` int DEFAULT '0',
+  `last_downloaded` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `file_downloads`
+--
+
+INSERT INTO `file_downloads` (`id`, `file_id`, `download_count`, `last_downloaded`) VALUES
+(1, 137, 3, '2024-09-06 15:58:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `file_views`
+--
+
+CREATE TABLE `file_views` (
+  `id` int NOT NULL,
+  `file_id` int NOT NULL,
+  `view_count` int DEFAULT '0',
+  `last_view` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `file_views`
+--
+
+INSERT INTO `file_views` (`id`, `file_id`, `view_count`, `last_view`) VALUES
+(1, 137, 2, '2024-09-06 16:04:15'),
+(2, 136, 1, '2024-09-06 16:04:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs`
+--
+
+CREATE TABLE `logs` (
+  `id` int NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `ip` varchar(50) NOT NULL,
+  `user_org` int NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `logs`
+--
+
+INSERT INTO `logs` (`id`, `user_name`, `ip`, `user_org`, `created_at`) VALUES
+(2, 'Banglalink', '127.0.0.1', 17, '2024-09-05 17:32:27'),
+(3, 'Banglalink', '127.0.0.1', 17, '2024-09-06 04:40:50'),
+(4, 'Banglalink', '127.0.0.1', 17, '2024-09-06 08:30:49'),
+(5, 'Airtel', '127.0.0.1', 16, '2024-09-06 14:34:43'),
+(6, 'qurugijo', '127.0.0.1', 16, '2024-09-06 14:37:47'),
+(7, 'wamamixe', '127.0.0.1', 17, '2024-09-06 14:45:02'),
+(8, 'wopivy', '127.0.0.1', 17, '2024-09-06 14:49:34'),
+(9, 'hejucoxedo', '127.0.0.1', 17, '2024-09-06 14:50:08'),
+(10, 'qibukulir', '127.0.0.1', 17, '2024-09-06 14:50:35'),
+(11, 'qurugijo', '127.0.0.1', 16, '2024-09-06 15:04:40');
 
 -- --------------------------------------------------------
 
@@ -101,7 +172,10 @@ INSERT INTO `posts` (`post_id`, `project_name`, `post_details`, `post_by`, `crea
 (113, 'BD', 'Laila Kaniz Lucky is the upazila parishad chairman of Narsingdi&#039;s Raipura and a retired teacher of a government college.\r\n\r\nIt has now emerged that the former Bangla literature teacher has, in her name, a huge amount of properties, which do not match with her known source of income, indicating someone may have used her wallet as a safe place to stash wealth.\r\n\r\nLucky is the wife of Dr Matiur Rahman, a member of the National Board of Revenue, who came under the spotlight after his son posted on social media a photo of a sacrificial goat that he claimed to have bought for Tk 12 lakh.\r\n\r\nMatiur is now president of the NBR&#039;s Customs, Excise and VAT Appellate Tribunal, a grade-1 job, with a basic monthly salary of Tk 78,000.\r\n\r\nMedia reports, NBR sources and a number of documents seen by The Daily Star suggest that the highly-connected NBR official and his close and distant family members have great wealth, including significant stakes in various companies.\r\n\r\nMatiur did not respond to this newspaper&#039;s calls, but denied any wrongdoing while talking to other media outlets.\r\n\r\nLucky&#039;s tax files submitted to the Election Commission before this year&#039;s Narsingdi upazila pollsclaim she is worth Tk 10.31 crore, but a closer look indicates she may have understated her wealth by dozens of times.\r\n\r\nAccording to her wealth statement, she owns more than eight acres of mostly non-agricultural land and five flats in Dhaka, but the combined value of all this was shown at only Tk 5.19 crore.\r\n\r\nThis innocuous-looking list does not even mention her palace-like home in Raipura upazila&#039;s Marjal village -- an omission that raises eyebrows due to the opulence of the residence.\r\n\r\nThe much-talked-about, high-walled compound and two-storey bleached white mansion sits beside neighbours who live in small one-storey homes or huts made of corrugated tin sheets.\r\n\r\nThe Laila Kaniz Lucky Road, named after her, leads to her mansion.\r\n\r\nShamim Iqbal Munna, of Raipura&#039;s upazila engineering office, said that the 123-metre road was built in 2014 at a cost of Tk 14 lakh.\r\n\r\nMultiple teachers at the nearby Md Bashir High School, all requesting anonymity, said the land acquisition for that road was done using the school fund, and not with Lucky&#039;s money. They said she used her influence to have the road named after her. \r\n\r\nLucky retired as an associate professor of Bangla at Government Titumir College in the capital four years ago, and according to her tax filings, she gets a pension of only Tk 4.65 lakh per year.\r\n\r\nThe affidavit also does not mention that she is one of the co-owners of Wonder Park and Eco Resort, a sprawling green expanse with a lake, and lakeside cottages.\r\n\r\nThis newspaper contacted the eco resort and they confirmed that Lucky&#039;s children Ahmed Taufiqur Rahman and Farzana Rahman Ipshita are co-owners.\r\n\r\nThe eco resort took over certain sections of land from a community graveyard that lies adjacent to it, Altaf Hossain, a local union parishad member, told The Daily Star.', 16, '2024-06-23 10:30:45', 1),
 (114, 'All file type', 'Lorem', 16, '2024-06-23 15:06:37', 1),
 (118, '30 garment factories in Ashulia closed amid protests', 'They gathered in front of various factories along these routes, demanding employment and proportional hiring of men and women at the garment factories, among other demands.\r\n\r\nAt one point, the protesting workers erected barricades at various points on the two roads and started throwing stones at different factories.\r\n\r\n', 19, '2024-09-02 17:14:56', 1),
-(119, 'Oxfam warns against trend in using aid for political &amp; military purposes', 'Since 2001 there has been a growing trend of aid being used to win “hearts and minds” in conflicts. Unfortunately, this aid is often poorly conceived, ineffective, and in some cases has turned beneficiaries and aid workers into targets for attack, Oxfam said. This type of aid often by-passes the poorest people and dangerously blurs the line between civilian and military activity.\r\n\r\nThe report says that while aid flows rose towards meeting wealthy donors&#039; international aid commitments between 2001 and 2008, more than 40 per cent of this increase in aid was spent in just two countries, Afghanistan and Iraq. The remainder, Oxfam said, was shared between 150 other poor countries.\r\n\r\nAs national budgets are being reviewed and with more people in need of aid than ever before, Oxfam says that a new approach is needed to maximize the impact of aid based on long-term objectives rather than short-term political or military interests.\r\n', 19, '2024-09-04 09:07:55', 1);
+(119, 'Oxfam warns against trend in using aid for political &amp; military purposes', 'Since 2001 there has been a growing trend of aid being used to win “hearts and minds” in conflicts. Unfortunately, this aid is often poorly conceived, ineffective, and in some cases has turned beneficiaries and aid workers into targets for attack, Oxfam said. This type of aid often by-passes the poorest people and dangerously blurs the line between civilian and military activity.\r\n\r\nThe report says that while aid flows rose towards meeting wealthy donors&#039; international aid commitments between 2001 and 2008, more than 40 per cent of this increase in aid was spent in just two countries, Afghanistan and Iraq. The remainder, Oxfam said, was shared between 150 other poor countries.\r\n\r\nAs national budgets are being reviewed and with more people in need of aid than ever before, Oxfam says that a new approach is needed to maximize the impact of aid based on long-term objectives rather than short-term political or military interests.\r\n', 19, '2024-09-04 09:07:55', 1),
+(120, 'FIles', 'sdfasd', 17, '2024-09-06 15:07:00', 1),
+(121, 'Check', 'Lorem', 16, '2024-09-06 20:36:36', 1),
+(122, 'CheckFileUPload', 'Lorem ', 16, '2024-09-06 21:09:49', 1);
 
 -- --------------------------------------------------------
 
@@ -148,7 +222,11 @@ INSERT INTO `post_files` (`post_files_id`, `post_files_names`, `post_id`, `priva
 (130, 'Oxfam warns _66d7cf0b6fdf4_Permanent Member List.xlsx', 119, 0, '2024-09-04 09:07:55'),
 (131, 'Oxfam warns _66d7cf0b70d5d_Never-Split-the-Difference.pdf', 119, 0, '2024-09-04 09:07:55'),
 (133, 'Oxfam warns _66d7cf0b72360_unnamed.png', 119, 0, '2024-09-04 09:07:55'),
-(134, 'BD_66d7eeec6dd5c_dhaka-university-campus-230824-03-1724555077.jpg', 113, 0, '2024-09-04 11:23:56');
+(134, 'BD_66d7eeec6dd5c_dhaka-university-campus-230824-03-1724555077.jpg', 113, 0, '2024-09-04 11:23:56'),
+(135, 'FIles_66dac634e6452_1808973670477740.jpg', 120, 0, '2024-09-06 15:07:00'),
+(136, 'Check_66db1374ba971_dhaka-university-campus-230824-03-1724555077.jpg', 121, 0, '2024-09-06 20:36:36'),
+(137, 'CheckFileUPl_66db1b3def2c0_livelihood-middle-class-1.jpg', 122, 0, '2024-09-06 21:09:49'),
+(138, 'CheckFileUPl_66db1b3defffc_Never-Split-the-Difference.pdf', 122, 0, '2024-09-06 21:09:49');
 
 -- --------------------------------------------------------
 
@@ -200,6 +278,24 @@ ALTER TABLE `admins`
   ADD PRIMARY KEY (`admin_id`);
 
 --
+-- Indexes for table `file_downloads`
+--
+ALTER TABLE `file_downloads`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `file_views`
+--
+ALTER TABLE `file_views`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `organizations`
 --
 ALTER TABLE `organizations`
@@ -234,6 +330,24 @@ ALTER TABLE `admins`
   MODIFY `admin_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `file_downloads`
+--
+ALTER TABLE `file_downloads`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `file_views`
+--
+ALTER TABLE `file_views`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `organizations`
 --
 ALTER TABLE `organizations`
@@ -243,13 +357,13 @@ ALTER TABLE `organizations`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `post_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT for table `post_files`
 --
 ALTER TABLE `post_files`
-  MODIFY `post_files_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `post_files_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -13,8 +13,6 @@ if (isset($_GET['postId'])) {
 
 ?>
 
-
-
 <div class="container-fluid">
     <!-- start page title -->
     <div class="row">
@@ -52,15 +50,18 @@ if (isset($_GET['postId'])) {
                                 <p>Contact: <span>01718-209923</span></p>
                             </div>
                             <div class="org-log-info">
+                                <?php
+                                    $logs = getLogs($userInfo['user_org'], $conn);
+                                ?>
                                 <ul>
                                     <li>
                                         <p>Log in history</p>
                                     </li>
-                                    <li>IP: 192.168.0.0/16 <span>Date: 12 sat 2024</span></li>
-                                    <li>IP: 192.168.0.0/16 <span>Date: 12 sat 2024</span></li>
-                                    <li>IP: 192.168.0.0/16 <span>Date: 12 sat 2024</span></li>
-                                    <li>IP: 192.168.0.0/16 <span>Date: 12 sat 2024</span></li>
-                                    <li>IP: 192.168.0.0/16 <span>Date: 12 sat 2024</span></li>
+                                    <?php
+                                    while ($log = mysqli_fetch_assoc($logs)) {
+                                        echo  '<li>'. $log['user_name'] . ' ' .  $log['ip'] . ' <span>Date: '. $log['log_date'].'</span></li>';
+                                    }
+                                    ?>
                                 </ul>
                                 </ul>
                             </div>
@@ -73,7 +74,7 @@ if (isset($_GET['postId'])) {
                         <div class="project_info">
                             <div class="d-flex justify-content-between">
                                 <h2 class="fh-title-small"><?php echo isset($row['project_name']) ?  $row['project_name'] :  "Unauthorized User"; ?></h2>
-                                <p class="text-end" style='width:400px;'>Created: <?php echo isset($row['project_name']) ?  $row['post_date'] :  "Unauthorized User"; ?></p>
+                                <p class="text-end" style='width:400px;'>Project Created: <?php echo isset($row['project_name']) ?  $row['post_date'] :  "Unauthorized User"; ?></p>
                             </div>
                             <p><?php echo isset($row['post_details']) ?  nl2br($row['post_details']) :  "Unauthorized User"; ?></p>
                         </div>
@@ -94,39 +95,23 @@ if (isset($_GET['postId'])) {
                                     while ($row = mysqli_fetch_assoc($postFiles)) {
                                         $fileName = $row['post_files_names'];
                                         // print_r($fileName);
-                                        ?>
-                                        <div class="fh-list">
-                                            <ul class="fh_flex_space-btw">
-                                                <li class="fh-content">
-                                                    <h3 class="fh-title-small"><?php echo $fileName ?></h3>
-                                                </li>
-                                                <li class="fh-btn fh-flex-center">
-                                                <a class="color-view" href="viewpdf.php?filename=<?php echo urlencode($fileName); ?>" target="_blank">View File</a>
-                                                <a href="uploads/<?php echo $fileName; ?>" download>Download</a>
-                                                    <!-- // <a class="color-view" href="uploads/'.$fileName.'" target="_blank">view</a> -->
-                                                    <!-- <a href="uploads/'.$row['post_files_names'].'" download>Download</a> -->
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    <?php
-                                        }}}
+                                        echo '<div class="fh-list">
+                                                <ul class="fh_flex_space-btw">
+                                                    <li class="fh-content">
+                                                        <h3 class="fh-title-small">'.truncatePostContent($fileName,500).'</h3>
+                                                    </li>
+                                                    <li class="user-access">
+                                                        <i class="ri-download-cloud-2-fill"> - '. getDownloadCount ($row['post_files_id'], $conn).' Times</i> <br>
+                                                        <i class="ri-eye-fill"> - '. getViewCount ($row['post_files_id'], $conn).' Times</i>
+                                                    </li>   
+                                                    <li class="fh-btn fh-flex-center">
+                                                        <a class="color-view viewBtn" data-file-id='.$row['post_files_id'].' href="viewpdf.php?filename='.$fileName.'" target="_blank">view</a>
+                                                        <a class="downloadBtn" href="uploads/'.$row['post_files_names'].'" data-file-id='.$row['post_files_id'].' download>Download</a>
+                                                    </li>
+                                                </ul>
+                                            </div>';
+                                    }}}
                                     ?>
-
-                            <!-- START:: file card -->
-                            <!-- <div class="fh-list">
-                                <a href="download.php?name='.$row['post_files_names'].'" title="Download File">file</a>
-                                <a href="download.php?download='.$row['file'].'" title="Download File">file</a>
-                                <ul class="fh_flex_space-btw">
-                                    <li class="fh-content fh-flex-center">
-                                        <h3 class="fh-title-small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, nemo.</h3>
-                                    </li>
-                                    <li class="fh-btn fh-flex-center">
-                                        <a href="#" class="color-view">view</a>
-                                        <a href="#">Download</a>
-                                    </li>
-                                </ul>
-                            </div> -->
-                            <!-- END:: file card -->
                             
 
                         </div>
@@ -139,8 +124,63 @@ if (isset($_GET['postId'])) {
     </div><!-- End row -->
 
 
+
+
+
 </div>
 
 <?php
 include 'includes/footer.php';
 ?>
+
+
+<script>
+    $(document).ready(function() {
+        $('.downloadBtn').click(function(e) {
+            // Get the file ID from the button's data attribute
+            var fileId = $(this).data('file-id');
+
+            // Send an AJAX request to track the download
+            $.ajax({
+                url: 'track_download.php', // The PHP script to track downloads
+                type: 'POST',
+                data: { file_id: fileId },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        console.log("Download count updated");
+                    } else {
+                        console.error('Error: ' + response.error);
+                    }
+                },
+                error: function() {
+                    console.error('Error occurred while tracking the download.');
+                }
+            });
+            // Let the default download behavior continue without preventing the event
+        });
+        $('.viewBtn').click(function(e) {
+            // Get the file ID from the button's data attribute
+            var fileId = $(this).data('file-id');
+
+            // Send an AJAX request to track the download
+            $.ajax({
+                url: 'track_view.php', // The PHP script to track downloads
+                type: 'POST',
+                data: { file_id: fileId },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        console.log("Download count updated");
+                    } else {
+                        console.error('Error: ' + response.error);
+                    }
+                },
+                error: function() {
+                    console.error('Error occurred while tracking the download.');
+                }
+            });
+            // Let the default download behavior continue without preventing the event
+        });
+    });
+</script>

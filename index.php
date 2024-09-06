@@ -2,20 +2,23 @@
 include 'includes/header-user.php';
 ?>
 
+<?php
+
+?>
+
 <div class="container-fluid">
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
             <div class="page-title-box p-0 d-sm-flex align-items-center justify-content-between">
-                <!-- <h3 class="mb-sm-0">Projects by <?php
-                                                echo getOrgList($userInfo['user_org'], $conn);
-                                                ?></h3> -->
-
+                 <?php
+                    echo getOrgList($userInfo['user_org'], $conn);
+                ?>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Post</a></li>
-                        <li class="breadcrumb-item active">Post List</li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">User</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                 </div>
 
@@ -43,22 +46,30 @@ include 'includes/header-user.php';
                 <div class="card-body">
                     <div class="org-information fh_flex_space-btw">
                         <div class="org-details">
-                            <h1 class="fh-title-lg"><?php
-                                                echo getOrgList($userInfo['user_org'], $conn);
-                                                ?></h1>
-                            <p>Address: <span>Block K, 1213, House 23 Road 28, Dhaka 1213</span></p>
-                            <p>Contact: <span>01718-209923</span></p>
+                            <?php 
+                                $orgDetails = getOrgDetails($userInfo['user_org'], $conn);
+                                $org = mysqli_fetch_assoc($orgDetails);
+                                // print_r($org);
+                            ?>
+                            <h1 class="fh-title-lg"><?php echo $org['org_name'] ?></h1>
+                            <p>Address: <span><?php echo $org['org_address'] ?></span></p>
+                            <p>Contact: <span><?php echo $org['org_phone'] ?></span></p>
                         </div>
                         <div class="org-log-info">
+                            <?php
+                                $logs = getLogs($userInfo['user_org'], $conn);
+
+                            ?>
                                 <ul>
                                     <li>
                                         <p>Logs</p>
                                     </li>
-                                    <li>IP: 192.168.0.0/16 <span>Date: 12 sat 2024</span></li>
-                                    <li>IP: 192.168.0.0/16 <span>Date: 12 sat 2024</span></li>
-                                    <li>IP: 192.168.0.0/16 <span>Date: 12 sat 2024</span></li>
-                                    <li>IP: 192.168.0.0/16 <span>Date: 12 sat 2024</span></li>
-                                    <li>IP: 192.168.0.0/16 <span>Date: 12 sat 2024</span></li>
+                                    <?php
+                                        while ($row = mysqli_fetch_assoc($logs)) {
+                                            echo  '<li>'. $row['user_name'] . ' ' .  $row['ip'] . ' <span>Date: '. $row['created_at'].'</span></li>';
+                                        }
+                                    ?>
+
                                 </ul>
                             </div>
                     </div>

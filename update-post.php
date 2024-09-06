@@ -154,7 +154,7 @@ include 'includes/header.php';
                         }
                         else {
                             echo "<p class='text-center fs-4'>No posts 😔</p>";
-                        }
+                        }icons.min.css
                     ?>
 
                 </div>

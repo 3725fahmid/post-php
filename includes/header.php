@@ -62,7 +62,7 @@ if (isset($_GET['logout'])) {
                     <div class="d-flex align-items-center">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="dashboard.php" class="logo logo-dark">
+                            <a href="index.php" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="assets/images/logo-sm.png" alt="logo-sm" height="22">
                                 </span>
@@ -71,7 +71,7 @@ if (isset($_GET['logout'])) {
                                 </span>
                             </a>
 
-                            <a href="dashboard.php" class="logo logo-light">
+                            <a href="index.php" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="assets/images/logo.png" alt="logo-sm-light" height="20">
                                 </span>
