@@ -43,11 +43,14 @@ if (isset($_GET['postId'])) {
                     <div class="card-body">
                         <div class="org-information fh_flex_space-btw">
                             <div class="org-details">
-                                <h1 class="fh-title-lg"><?php
-                                                echo getOrgList($userInfo['user_org'], $conn);
-                                                ?></h1></h1>
-                                <p>Address: <span>Block K, 1213, House 23 Road 28, Dhaka 1213</span></p>
-                                <p>Contact: <span>01718-209923</span></p>
+                                <?php 
+                                    $orgDetails = getOrgDetails($userInfo['user_org'], $conn);
+                                    $org = mysqli_fetch_assoc($orgDetails);
+                                    // print_r($org);
+                                ?>
+                                <h1 class="fh-title-lg"><?php echo $org['org_name'] ?></h1>
+                                <p>Address: <span><?php echo $org['org_address'] ?></span></p>
+                                <p>Contact: <span><?php echo $org['org_phone'] ?></span></p>
                             </div>
                             <div class="org-log-info">
                                 <?php
