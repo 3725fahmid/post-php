@@ -1,0 +1,317 @@
+.sr-section {
+    min-height: 100vh;
+    position: relative;
+}
+
+.sr-position-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.post-list-grid {
+    display: grid;
+    grid-template-columns: 15% 15% 60% 10%;
+    justify-items: center;
+    height: 40px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.user-post-list {
+    display: block;
+    padding: 10px 0px;
+    transition: all .1s ease-in-out;
+}
+.user-post-list:hover {
+    display: block;
+    padding: 10px 0px;
+    background-color: ghostwhite;
+}
+
+.sr-card {
+    padding: 10px;
+    background-color: #fff;
+    height: 100%;
+}
+
+.sr-position-end {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+}
+
+.sr-card-title {
+    font-size: 20px;
+}
+.sr-card-subtitle {
+    font-size: 16px;
+}
+
+.post-view-grid {
+    display: grid;
+    grid-template-columns: 5% 10% 10% 45% 10% 15%;
+    gap: 10px;
+}
+
+.glass-card{
+    /* width: 350px; */
+    margin: 0;
+    padding: 30px;
+    background:rgb(255 255 255 / 50%);
+    -webkit-backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px 0 rgba(43, 45, 66, 0.3);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-top: 1px solid transparent;
+    border-left: 1px solid transparent;
+}
+
+.sr-search {
+    width: 50%;
+    padding: 12px;
+    border: 1px solid #000;
+    outline: none;
+    border-radius: 5px;
+}
+
+.sr-file-card{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+
+.file-icon i {
+    font-size: 45px;
+    height: 100%;
+    /* color: #000; */
+}
+
+.file-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-icon .fa-file-word {
+    color: #185abd;
+}
+.file-icon .fa-file-excel {
+    color: #107a40;
+}
+.file-icon .fa-file-pdf {
+    color: #E30809;
+}
+.file-icon .fa-file-image {
+    color: #1480d8af;
+}
+.file-icon .fa-file-powerpoint {
+    color: #c43f1d;
+}
+
+.fh-list {
+    width: 100%;
+    background: #E9EFEC;
+    padding: 20px;
+    position: relative;
+    border-left: 10px solid #16423C;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    border-top: 1px solid #C4DAD2;
+    border-right: 1px solid #C4DAD2;
+    border-bottom: 1px solid #C4DAD2;
+    cursor: pointer;
+}
+
+.fh-list:hover{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.fh-list ul{
+    margin: 0;
+    padding: 0;
+}
+.email-rightbar ul li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: block;
+}
+.fh_flex_space-btw{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.fh-list ul li a {
+    font-size: 16px;
+    background: #16423C;
+    color: #fff;
+    display: inline-block;
+    width: 120px;
+    padding: 7px 10px;
+    text-align: center;
+    border-radius: 25px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+.fh-list ul li a:hover{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.fh-title-lg{
+    font-size: 28px;
+    line-height: 26px;
+    color: #161616;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.fh-title-small{
+    font-size: 18px;
+    line-height: 26px;
+    color: #161616;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.fh-list .fh-content{
+    width: 70%;
+}
+.fh-list .fh-content .fh-title-small{
+    margin-top: 10px;
+}
+.fh-flex-center{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: right;
+}
+.org-details{
+    margin: 10px 0;
+}
+.org-details .fh-title-lg{
+    text-transform: uppercase;
+}
+.org-details p{
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #161616;
+}
+.org-details p span{
+    font-weight: 400;
+    color: #16423C;
+}
+.org-log-info{
+
+}
+.org-log-info ul li{
+    list-style: none;
+    text-align: center;
+    background: #16423C;
+    color: #E9EFEC;
+    margin-bottom: 5px;
+    padding: 7px 35px;
+}
+.org-log-info ul li p{
+    color: #E9EFEC;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+.org-log-info ul li span{
+    display: block;
+    font-size: 12px;
+}
+.fh-btn .color-view{
+    background-color: #D8A25E;
+}
+.project_info{
+    background-color: #E9EFEC;
+    color: #16423C;
+    padding: 10px;
+    border: 1px solid #C4DAD2;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.project_info p{
+    font-weight: 600;
+}
+.disclimer-note{
+    background-color: #FFFFCC;
+    color: #16423C;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 16px 32px;
+    border-radius: 10px;
+    border: 1px solid #f2f289;
+}
+.disclimer-note .fh-title-small{
+    font-size: 24px;
+    text-transform: uppercase;
+}
+.disclimer-note p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 400;
+}
+.disclimer-note strong{
+    font-weight: bolder;
+    font-size: 18px;
+    line-height: 26px;
+}
+@media (max-width: 1250px) {
+    .fh_flex_space-btw {
+        flex-direction: column;
+    }
+    .fh-list .fh-content{
+        text-align: center;
+        width: 100%;
+    }
+    .fh-flex-center{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+}
+@media (max-width: 600px) {
+    .fh_flex_space-btw{
+        flex-direction: column;
+        justify-content: center;
+    }
+    .org-details{
+        text-align: center;
+    }
+    .org-log-info{
+        display: none;
+    }
+    .fh-list ul li a {
+        font-size: 14px;
+        width: fit-content;
+        padding: 7px 20px;
+    }
+    .fh-list .fh-content{
+        width: 100%;
+    }
+    .fh-flex-center{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .fh-list {
+        padding: 10px;
+    }
+
+}
